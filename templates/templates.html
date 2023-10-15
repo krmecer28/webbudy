@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="col-md-10 offset-md-1">
+    <h3>Templates</h3>
+    <hr>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 25px;">
+{% if templates %}
+
+{% for template in templates %}
+    <div class="row">
+        <div class="col-md-10 offset-md-3">
+            <div class="card" style="width: 18rem;">
+                {% if template.cover_photo %}
+                <img class="img-fluid rounded" src="{{template.cover_photo.url}}" style="width: 286px; height: 286px;"/>
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{template.title}}</h5>
+                    <p class="card-text">{{template.description|safe}}</p>
+                </div>
+                <div class="card-footer text-muted">
+                    {{template.created_date}}
+                    <br>
+                    by {{template.author}}
+                    <br>
+                    <br>
+                    <a href="/templates/template/{{template.id}}" class="btn btn-primary">See Details</a>
+                    </div>
+                </div>
+        </div>
+    </div>
+{% endfor %}
+
+{% else %}
+<div class="alert alert-danger">
+    There are no templates yet...
+</div>
+
+{% endif %}
+</div>
+
+{% endblock body %}
+
+{% include "includes/footer.html" %}

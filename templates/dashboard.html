@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<h3>Dashboard</h3>
+<hr>
+<p>
+    Welcome, <small>{{request.user.username}}</small>
+</p>
+<hr>
+
+<a class="btn btn-danger" href="/templates/addtemplate">Add Template</a>
+<hr>
+
+{% if templates %}
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+        <th scope="col">id</th>
+        <th scope="col">Title</th>
+        <th scope="col">Maker</th>
+        <th scope="col">Date</th>
+        <th scope="col">Update</th>
+        <th scope="col">Delete</th>
+        <th scope="col">Upload Images</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for template in templates %}
+
+            <tr>
+                <th scope="row">{{template.id}}</th>
+                <td> <a href="/templates/template/{{template.id}}">{{template.title}}</a></td>
+                <td>{{template.author}}</td>
+                <td>{{template.created_date}}</td>
+                <td><a href="/templates/update/{{template.id}}" class="btn btn-danger">Update</a></td>
+                <td><a href="/templates/delete/{{template.id}}" class="btn btn-danger">Delete</a></td>
+                <td><a href="/templates/uploadimages/{{template.id}}" class="btn btn-danger">Upload Images</a></td>
+            </tr>
+
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<div class="alert alert-danger">
+    There are no templates...
+</div>
+
+{% endif %}
+
+{% endblock body %}
