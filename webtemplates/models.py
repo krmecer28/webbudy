@@ -7,7 +7,7 @@ class WebTemplates(models.Model):
     title = models.CharField(max_length=50, verbose_name="title")
     description = models.TextField()
     page_number = models.IntegerField(verbose_name="Number of Pages(Max. 10)", default=1)
-    created_date = models.DateField(auto_now_add=True, verbose_name="Oluşturulma Tarihi")
+    created_date = models.DateField(auto_now_add=True, verbose_name="Created Date")
     cover_photo = models.FileField(verbose_name="Your Cover Photo", blank=True, null=True)
     template_image1 = models.FileField(verbose_name="Image 1", blank=True, null=True)
     template_image2 = models.FileField(verbose_name="Image 2", blank=True, null=True)

@@ -8,26 +8,24 @@
     <script defer src="{% static 'fontawesome/js/all.min.js' %}"></script>
     <title>Document</title>
 </head>
-<body style="height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
-    <div class="container1" style="height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
-        {% include "includes/navbar.html" %}
-        <div style="margin-top: 100px;" class="container">
-            {% if messages %}
-                {% for message in messages %}
-                
-                {% if message.tags == "info" %}
-                <div class="alert alert-danger">{{ message }}</div>
-    
-                {% else %}
-                <div class="alert alert-{{ message.tags }}">{{ message }}</div>
-                {% endif %}
-                {% endfor %}
+<body>
+    {% include "includes/navbar.html" %}
+    <div style="margin-top: 100px;" class="container">
+        {% if messages %}
+            {% for message in messages %}
+            
+            {% if message.tags == "info" %}
+            <div class="alert alert-danger">{{ message }}</div>
+
+            {% else %}
+            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
             {% endif %}
-    
-            {% block body %}
-    
-            {% endblock body %}
-        </div>
+            {% endfor %}
+        {% endif %}
+
+        {% block body %}
+
+        {% endblock body %}
     </div>
     
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>

@@ -3,6 +3,8 @@ from .forms import TemplateForm, OneTemplateImageFileForm, TwoTemplateImageFileF
 from django.contrib import messages
 from .models import WebTemplates
 
+from django.contrib.auth.decorators import login_required
+
 # Create your views here.
 def templates(request):
     templates = WebTemplates.objects.all()
@@ -15,6 +17,7 @@ def index(request):
 def about(request):
     return render(request, 'about.html')
 
+@login_required(login_url="user:login")
 def addTemplate(request):
     form = TemplateForm(request.POST or None)
 
@@ -23,11 +26,12 @@ def addTemplate(request):
         template.author = request.user
         template.save()
 
-        messages.success(request, "Template Created Successfully. Please go to dashboard for upload your images")
-        return redirect("index")
+        messages.success(request, "Template Created Successfully. Please upload your images to publish your template")
+        return redirect("webtemplates:dashboard")
     
     return render(request, 'addtemplate.html', {"form": form})
 
+@login_required(login_url="user:login")
 def dashboard(request):
     templates = WebTemplates.objects.filter(author = request.user)
 
@@ -37,13 +41,15 @@ def dashboard(request):
 
     return render(request, 'dashboard.html', context)
 
+@login_required(login_url="user:login")
 def deleteTemplate(request, id):
     template = get_object_or_404(WebTemplates, id = id)
     template.delete()
     messages.success(request, "Template Deleted Successfully")
 
-    return redirect("index")
+    return redirect("webtemplates:dashboard")
 
+@login_required(login_url="user:login")
 def uploadImages(request, id):
     template = WebTemplates.objects.filter(id = id).first()
     print(template.title)
@@ -62,7 +68,7 @@ def uploadImages(request, id):
             template.save()
 
             messages.success(request, "Successfully added your files")
-            return redirect("index")
+            return redirect("webtemplates:dashboard")
         return render(request, "addfiles.html", {"form": form})
     
     elif template.page_number == 2:
@@ -80,7 +86,7 @@ def uploadImages(request, id):
             template.save()
 
             messages.success(request, "Successfully added your files")
-            return redirect("index")
+            return redirect("webtemplates:dashboard")
         return render(request, "addfiles.html", {"form": form})
     
     elif template.page_number == 3:
@@ -99,7 +105,7 @@ def uploadImages(request, id):
             template.save()
 
             messages.success(request, "Successfully added your files")
-            return redirect("index")
+            return redirect("webtemplates:dashboard")
         return render(request, "addfiles.html", {"form": form})
     
     elif template.page_number == 4:
@@ -119,7 +125,7 @@ def uploadImages(request, id):
             template.save()
 
             messages.success(request, "Successfully added your files")
-            return redirect("index")
+            return redirect("webtemplates:dashboard")
         return render(request, "addfiles.html", {"form": form})
     
     elif template.page_number == 5:
@@ -140,7 +146,7 @@ def uploadImages(request, id):
             template.save()
 
             messages.success(request, "Successfully added your files")
-            return redirect("index")
+            return redirect("webtemplates:dashboard")
         return render(request, "addfiles.html", {"form": form})
     
     elif template.page_number == 6:
@@ -162,7 +168,7 @@ def uploadImages(request, id):
             template.save()
 
             messages.success(request, "Successfully added your files")
-            return redirect("index")
+            return redirect("webtemplates:dashboard")
         return render(request, "addfiles.html", {"form": form})
     
     elif template.page_number == 7:
@@ -185,7 +191,7 @@ def uploadImages(request, id):
             template.save()
 
             messages.success(request, "Successfully added your files")
-            return redirect("index")
+            return redirect("webtemplates:dashboard")
         return render(request, "addfiles.html", {"form": form})
     
     elif template.page_number == 8:
@@ -209,7 +215,7 @@ def uploadImages(request, id):
             template.save()
 
             messages.success(request, "Successfully added your files")
-            return redirect("index")
+            return redirect("webtemplates:dashboard")
         return render(request, "addfiles.html", {"form": form})
     
     elif template.page_number == 9:
@@ -234,7 +240,7 @@ def uploadImages(request, id):
             template.save()
 
             messages.success(request, "Successfully added your files")
-            return redirect("index")
+            return redirect("webtemplates:dashboard")
         return render(request, "addfiles.html", {"form": form})
     
     elif template.page_number == 10:
@@ -260,7 +266,7 @@ def uploadImages(request, id):
             template.save()
 
             messages.success(request, "Successfully added your files")
-            return redirect("index")
+            return redirect("webtemplates:dashboard")
         return render(request, "addfiles.html", {"form": form})
     
 
