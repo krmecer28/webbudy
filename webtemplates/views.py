@@ -2,6 +2,7 @@ from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
 from .forms import TemplateForm, OneTemplateImageFileForm, TwoTemplateImageFileForm, ThreeTemplateImageFileForm, FourTemplateImageFileForm, FiveTemplateImageFileForm, SixTemplateImageFileForm, SevenTemplateImageFileForm, EightTemplateImageFileForm, NineTemplateImageFileForm, TenTemplateImageFileForm
 from django.contrib import messages
 from .models import WebTemplates
+from random import shuffle
 
 from django.contrib.auth.decorators import login_required
 
@@ -12,7 +13,18 @@ def templates(request):
     return render(request, "templates.html", {"templates": templates})
 
 def index(request):
-    return render(request, 'index.html')
+    temps = list()
+    counter = 0
+
+    for template in WebTemplates.objects.all():
+        temps.append(template)
+        counter += 1
+
+        if (counter > 4):
+            break
+
+    shuffle(temps)
+    return render(request, 'index.html', {"temps": temps})
 
 def about(request):
     return render(request, 'about.html')

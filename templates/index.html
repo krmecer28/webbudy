@@ -1,7 +1,206 @@
-{% extends 'layout.html' %}
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <title>Document</title>
+    <style>
+      .cards {
+        background-color: rgb(212, 212, 212);
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 50px;
+        padding: 15px;
+      }
 
-{% block body %}
+      .info {
+        margin-top: 50px;
+        height: 300px;
+        width: 430px;
+        border-radius: 20px;
+        padding: 20px;
+        background-color: white;
+      }
 
+      @media only screen and (max-width: 700px) {
+        #img {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    {% include "includes/navbar.html" %}
+    <div
+      class="hero"
+      style="
+        display: flex;
+        justify-content: space-between;
+        height: 100%;
+        max-height: 800px;
+        width: 100%;
+        max-width: 1000000px;
+        margin-top: 70px;
+      "
+    >
+      <div class="space" style="width: 10vw"></div>
+      <div
+        class="heroleft"
+        style="
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+        "
+      >
+        <h1>Welcome to WEBBUDY: Where Creativity Meets Code!</h1>
+        <p>
+          Boost your business with our professional web design services. Stand
+          out from the competition and attract more customers.
+        </p>
+        <br />
+        <button
+          type="button"
+          class="btn btn-primary"
+          style="height: 100%; width: 100%; max-width: 150px; max-height: 50px"
+        >
+          <a href="/templates" style="text-decoration: none; color: white"
+            >Explore It!</a
+          >
+        </button>
+      </div>
+      <div class="space" style="width: 10vw"></div>
+      <div class="heroright" style="margin-top: 4vw">
+        <img
+          id="img"
+          src="https://bootstrapmade.com/demo/templates/Impact/assets/img/hero-img.svg"
+          style="height: 100%; width: 100%"
+        />
+      </div>
+      <div class="space" style="width: 10vw"></div>
+    </div>
 
+    <br />
+    <br />
+    <br />
 
-{% endblock body %}
+    <div class="cards" style="height: 100%; min-height: 500px">
+      <div class="info">
+        <section>
+          <h4>Unlocking Creative Potential</h4>
+          <br />
+          <p>
+            At WEBBUDY, we believe that the web should be a canvas for your
+            imagination. With our vast collection of free web templates, you can
+            transform your ideas into stunning websites. These templates are
+            designed to be user-friendly, offering flexibility and customization
+            options to help you craft a website that reflects your unique style
+            and vision.
+          </p>
+        </section>
+      </div>
+      <div class="info">
+        <section>
+          <h4>A Community of Innovators</h4>
+          <br />
+          <p>
+            WEBBUDY is not just a platform; it's a community of innovators and
+            creators. We encourage all our members to be active participants in
+            this ecosystem. When you sign up, you become part of a supportive
+            and collaborative group where you can freely exchange ideas, seek
+            guidance, and celebrate each other's successes.
+          </p>
+        </section>
+      </div>
+      <div class="info">
+        <section>
+          <h4>Your Journey Begins Here</h4>
+          <br />
+          <p>
+            WEBBUDY is your gateway to web design and development excellence.
+            Whether you want to start a new project, enhance an existing one, or
+            share your work with the world, we're here to support you every step
+            of the way. Our goal is to empower you to make your mark in the
+            digital landscape.
+          </p>
+        </section>
+      </div>
+      <div class="info">
+        <section>
+          <h4>A Digital Dream Come True</h4>
+          <br />
+          <p>
+            Join us at WEBBUDY, where dreams become digital realities. Unleash
+            your creativity, master the art of web design, and make a
+            significant impact on the web. It's time to bring your vision to
+            life and be part of the ever-evolving web community.
+          </p>
+        </section>
+      </div>
+    </div>
+
+    <br />
+    <br />
+    <br />
+
+    <div class="col-md-10 offset-md-1">
+        <h3>Featured Templates</h3>
+        <hr>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; gap: 25px;">
+    {% if temps %}
+    
+    {% for template in temps %}
+        <div class="row">
+            <div class="col-md-10 offset-md-3">
+                <div class="card" style="width: 18rem;">
+                    {% if template.cover_photo %}
+                    <img class="img-fluid rounded" src="{{template.cover_photo.url}}" style="width: 286px; height: 286px;"/>
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{template.title}}</h5>
+                        <p class="card-text">{{template.description|safe}}</p>
+                    </div>
+                    <div class="card-footer text-muted">
+                        {{template.created_date}}
+                        <br>
+                        by <strong>{{template.author}}</strong>
+                        <br>
+                        <br>
+                        <a href="/templates/template/{{template.id}}" class="btn btn-primary">See Details</a>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    {% endfor %}
+    
+    {% else %}
+    <div class="alert alert-danger">
+        There are no templates yet...
+    </div>
+    
+    {% endif %}
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+      integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+      integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
