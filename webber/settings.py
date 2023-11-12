@@ -24,14 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-71%_d!uc2(lw3a%$pwx__r_b!5z6y@0hc%@uzducgyqvq(@6qw'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-<<<<<<< HEAD
-ALLOWED_HOSTS = ["localhost"]
-=======
-ALLOWED_HOSTS = [".vercel.app", "webbudy.com", "webber28.pythonanywhere.com"]
->>>>>>> ec948c53c833968207667010e8f8d45c2fbe77fc
-
+ALLOWED_HOSTS = [".vercel.app", "webbudy.com", "webber28.pythonanywhere.com", "localhost"]
 
 # Application definition
 
