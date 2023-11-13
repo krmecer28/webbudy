@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'webber.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'URL': 'postgres://postgres:eaG1Eg6-e22GddgCf21ed5g*bGDf26be@roundhouse.proxy.rlwy.net:37128/railway',
         'NAME': 'railway',
         'USER': 'postgres',
