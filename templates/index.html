@@ -9,7 +9,7 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
-    <title>Document</title>
+    <title>webbudy</title>
     <style>
       .cards {
         background-color: rgb(212, 212, 212);
@@ -40,6 +40,17 @@
   </head>
   <body>
     {% include "includes/navbar.html" %}
+    {% if messages %}
+      {% for message in messages %}
+      
+      {% if message.tags == "info" %}
+      <div class="alert alert-danger">{{ message }}</div>
+
+      {% else %}
+      <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+      {% endif %}
+      {% endfor %}
+    {% endif %}
     <div
       class="hero"
       style="
