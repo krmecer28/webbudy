@@ -1,5 +1,10 @@
 from django.contrib import admin
-from .models import WebTemplates, OneTemplateFiles, TwoTemplateFiles, ThreeTemplateFiles, FourTemplateFiles, FiveTemplateFiles, SixTemplateFiles, SevenTemplateFiles, EightTemplateFiles, NineTemplateFiles, TenTemplateFiles
+
+from .models import (EightTemplateFiles, FiveTemplateFiles, FourTemplateFiles,
+                     NineTemplateFiles, OneTemplateFiles, SevenTemplateFiles,
+                     SixTemplateFiles, TenTemplateFiles, ThreeTemplateFiles,
+                     TwoTemplateFiles, WebTemplates)
+
 
 # Register your models here.
 @admin.register(WebTemplates)

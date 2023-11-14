@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 import os
+import dj_database_url
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -26,7 +27,7 @@ SECRET_KEY = 'django-insecure-71%_d!uc2(lw3a%$pwx__r_b!5z6y@0hc%@uzducgyqvq(@6qw
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [".vercel.app", "webbudy.com", "webber28.pythonanywhere.com", "localhost"]
+ALLOWED_HOSTS = [".vercel.app", "webbudy.com", "webber28.pythonanywhere.com", "localhost", "www.webbudy.com"]
 
 # Application definition
 
@@ -89,6 +90,8 @@ DATABASES = {
         'PORT': 37128,
     }
 }
+
+DATABASES["default"] = dj_database_url.parse("postgres://webbudy_user:c3vXPLGOiRZH9QEOMdxsfq7WUsZz2Rq4@dpg-cl9ld65o7jlc73ffe6i0-a.oregon-postgres.render.com/webbudy")
 
 
 # Password validation
