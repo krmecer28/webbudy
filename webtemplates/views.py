@@ -8,9 +8,13 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def templates(request):
-    templates = WebTemplates.objects.all()
-    
-    return render(request, "templates.html", {"templates": templates})
+    temps = list()
+
+    for template in WebTemplates.objects.all():
+        temps.append(template)
+
+    shuffle(temps)
+    return render(request, 'templates.html', {"templates": temps})
 
 def index(request):
     temps = list()
@@ -42,6 +46,22 @@ def addTemplate(request):
         return redirect("webtemplates:dashboard")
     
     return render(request, 'addtemplate.html', {"form": form})
+
+@login_required(login_url="user:login")
+def updateTemplate(request, id):
+
+    template = get_object_or_404(WebTemplates, id = id)
+    form = TemplateForm(request.POST or None, instance=template)
+
+    if form.is_valid():
+        template = form.save(commit=False)
+        template.author = request.user
+        template.save()
+
+        messages.success(request, "Template updated successfully!")
+        return redirect('templates:dashboard')
+    
+    return render(request, "update.html", {"form": form})
 
 @login_required(login_url="user:login")
 def dashboard(request):

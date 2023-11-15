@@ -48,12 +48,12 @@ def loginUser(request):
             messages.info(request, "Email or Password is Incorrect")
             return render(request, "login.html", context)
         
-        messages.success(request, "Başarıyla Giriş Yaptınız")
+        messages.success(request, "You have successfully logged in")
         login(request, user)
         return redirect("index")
     return render(request, "login.html", context)
 
 def logoutUser(request):
     logout(request)
-    messages.success(request, "Başarıyla Çıkış Yaptınız")
+    messages.success(request, "You have successfully logged out")
     return redirect('index')

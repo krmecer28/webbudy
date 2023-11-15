@@ -1,12 +1,12 @@
 from django import forms
 from django.db import models
-
+from ckeditor.fields import RichTextField
 
 # Create your models here.
 class WebTemplates(models.Model):
     author = models.ForeignKey("auth.User", on_delete=models.CASCADE, verbose_name="maker")
     title = models.CharField(max_length=50, verbose_name="title")
-    description = models.TextField()
+    description = RichTextField()
     page_number = models.IntegerField(verbose_name="Number of Pages(Max. 10)", default=1)
     created_date = models.DateField(auto_now_add=True, verbose_name="Created Date")
     cover_photo = models.FileField(verbose_name="Your Cover Photo", blank=True, null=True)

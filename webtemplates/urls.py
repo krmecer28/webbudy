@@ -11,4 +11,5 @@ urlpatterns = [
     path('delete/<int:id>', views.deleteTemplate, name="delete"),
     path('uploadimages/<int:id>', views.uploadImages, name="uploadimages"),
     path('template/<int:id>', views.detail, name="detail"),
+    path('update/<int:id>', views.updateTemplate, name="update"),
 ]
