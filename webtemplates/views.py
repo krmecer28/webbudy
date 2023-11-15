@@ -33,6 +33,9 @@ def index(request):
 def about(request):
     return render(request, 'about.html')
 
+def privacy(request):
+    return render(request, 'privacy.html')
+
 @login_required(login_url="user:login")
 def addTemplate(request):
     form = TemplateForm(request.POST or None)
