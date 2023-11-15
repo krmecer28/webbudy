@@ -28,6 +28,7 @@ urlpatterns = [
     path('aboutus/', views.about, name="aboutus"),
     path('user/', include("user.urls")),
     path('templates/', include("webtemplates.urls")),
+    path('privacy/', views.privacy, name="privacy"),
     re_path(r'^files/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT}),
     re_path(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT})
 ]
